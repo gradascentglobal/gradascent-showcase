@@ -1492,12 +1492,12 @@
 
                 <div class="contact-email-box">
                     <span class="email-label">Or email us directly</span>
-                    <a href="/cdn-cgi/l/email-protection#dcbfb3b2a8bdbfa89cbbaebdb8bdafbfb9b2a8bbb0b3bebdb0f2bfb3b1" class="email-link">
+                    <a id="emailLink" class="email-link" href="#">
                         <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
                             <polyline points="22,6 12,13 2,6"/>
                         </svg>
-                        <span class="__cf_email__" data-cfemail="fc9f9392889d9f88bc9b8e9d989d8f9f9992889b90939e9d90d29f9391">[email&#160;protected]</span>
+                        <span id="emailText"></span>
                     </a>
                 </div>
             </div>
@@ -1577,7 +1577,7 @@
                 <a href="#products">Products</a>
                 <a href="#why">About</a>
                 <a href="#contact">Contact</a>
-                <a href="/cdn-cgi/l/email-protection#a6c5c9c8d2c7c5d2e6c1d4c7c2c7d5c5c3c8d2c1cac9c4c7ca88c5c9cb"><span class="__cf_email__" data-cfemail="61020e0f150002152106130005001202040f15060d0e03000d4f020e0c">[email&#160;protected]</span></a>
+                <a id="footerEmail" href="#">Email Us</a>
             </div>
             <div class="footer-copyright">
                 © 2026 GradAscent Technologies. All rights reserved.
@@ -1585,7 +1585,7 @@
         </div>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
         // Product stats data
         const productStats = {
             default: {
@@ -1757,6 +1757,28 @@
             el.style.transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
             observer.observe(el);
         });
+
+        // Render email dynamically to prevent Cloudflare encoding
+        (function() {
+            var user = 'contact';
+            var domain = 'gradascentglobal.com';
+            var email = user + '@' + domain;
+            
+            // Contact section email
+            var emailLink = document.getElementById('emailLink');
+            var emailText = document.getElementById('emailText');
+            if (emailLink && emailText) {
+                emailLink.href = 'mailto:' + email;
+                emailText.textContent = email;
+            }
+            
+            // Footer email
+            var footerEmail = document.getElementById('footerEmail');
+            if (footerEmail) {
+                footerEmail.href = 'mailto:' + email;
+                footerEmail.textContent = email;
+            }
+        })();
     </script>
 </body>
 </html>
