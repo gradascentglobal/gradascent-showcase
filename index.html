@@ -1,0 +1,1705 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GradAscent Technologies | Enterprise AI Solutions for Education</title>
+    <meta name="description" content="Transform education with AI-powered assessment, speech evaluation, and automated note-taking solutions from GradAscent Technologies.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --orange-primary: #F5A623;
+            --orange-hover: #E09000;
+            --orange-light: #FFF8ED;
+            --blue-primary: #2D9CDB;
+            --blue-dark: #1A7BB9;
+            --blue-light: #E8F4FC;
+            --green-success: #27AE60;
+            --green-light: #E8F8EF;
+            
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F8FAFC;
+            --bg-tertiary: #F1F5F9;
+            
+            --text-primary: #1E293B;
+            --text-secondary: #475569;
+            --text-muted: #94A3B8;
+            
+            --border-light: #E2E8F0;
+            --border-medium: #CBD5E1;
+            
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.08), 0 4px 6px -2px rgba(0, 0, 0, 0.04);
+            --shadow-xl: 0 20px 25px -5px rgba(0, 0, 0, 0.08), 0 10px 10px -5px rgba(0, 0, 0, 0.03);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1rem 4rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo img {
+            height: 44px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--text-primary);
+        }
+
+        .logo-text .orange {
+            color: var(--orange-primary);
+        }
+
+        .logo-text .blue {
+            color: var(--blue-primary);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: var(--blue-primary);
+        }
+
+        .nav-cta {
+            background: var(--orange-primary);
+            color: white;
+            padding: 0.7rem 1.5rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.95rem;
+            transition: background 0.2s, transform 0.2s;
+        }
+
+        .nav-cta:hover {
+            background: var(--orange-hover);
+            transform: translateY(-1px);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 4rem 4rem;
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, #FFFFFF 50%, var(--blue-light) 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -20%;
+            width: 800px;
+            height: 800px;
+            background: radial-gradient(circle, rgba(45, 156, 219, 0.08) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -10%;
+            width: 600px;
+            height: 600px;
+            background: radial-gradient(circle, rgba(245, 166, 35, 0.06) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero-content {
+            max-width: 600px;
+        }
+
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--orange-light);
+            border: 1px solid rgba(245, 166, 35, 0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: var(--orange-hover);
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-badge svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        .hero h1 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 3.25rem;
+            font-weight: 700;
+            line-height: 1.15;
+            margin-bottom: 1.25rem;
+            color: var(--text-primary);
+        }
+
+        .hero h1 .highlight-orange {
+            color: var(--orange-primary);
+        }
+
+        .hero h1 .highlight-blue {
+            color: var(--blue-primary);
+        }
+
+        .hero p {
+            font-size: 1.15rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .hero-cta {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .btn-primary {
+            background: var(--orange-primary);
+            color: white;
+            padding: 0.9rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            background: var(--orange-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(245, 166, 35, 0.3);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--blue-primary);
+            padding: 0.9rem 2rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            border: 2px solid var(--blue-primary);
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .btn-secondary:hover {
+            background: var(--blue-primary);
+            color: white;
+        }
+
+        /* Dynamic Stats */
+        .hero-stats {
+            display: flex;
+            gap: 2.5rem;
+            transition: all 0.4s ease;
+        }
+
+        .stat-item {
+            text-align: left;
+            transition: all 0.3s ease;
+        }
+
+        .stat-value {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--blue-primary);
+            transition: all 0.3s ease;
+        }
+
+        .stat-label {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+            margin-top: 0.125rem;
+            transition: all 0.3s ease;
+        }
+
+        /* Active product indicator */
+        .stats-product-label {
+            font-size: 0.75rem;
+            color: var(--orange-primary);
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .stats-product-label.visible {
+            opacity: 1;
+        }
+
+        /* Hero Visual */
+        .hero-visual {
+            position: relative;
+        }
+
+        .hero-cards {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .preview-card {
+            background: white;
+            border-radius: 16px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow-lg);
+            border: 2px solid transparent;
+            transform: translateX(0);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .preview-card:nth-child(1) {
+            transform: translateX(20px);
+        }
+
+        .preview-card:nth-child(2) {
+            transform: translateX(40px);
+        }
+
+        .preview-card:nth-child(3) {
+            transform: translateX(60px);
+        }
+
+        .preview-card:hover,
+        .preview-card.active {
+            transform: translateX(0) scale(1.02) !important;
+            box-shadow: var(--shadow-xl);
+        }
+
+        .preview-card:nth-child(1):hover,
+        .preview-card:nth-child(1).active {
+            border-color: var(--orange-primary);
+        }
+
+        .preview-card:nth-child(2):hover,
+        .preview-card:nth-child(2).active {
+            border-color: var(--blue-primary);
+        }
+
+        .preview-card:nth-child(3):hover,
+        .preview-card:nth-child(3).active {
+            border-color: var(--green-success);
+        }
+
+        .preview-header {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .preview-icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+        }
+
+        .preview-icon.orange {
+            background: var(--orange-light);
+        }
+
+        .preview-icon.blue {
+            background: var(--blue-light);
+        }
+
+        .preview-icon.green {
+            background: var(--green-light);
+        }
+
+        .preview-title {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .preview-desc {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        /* Products Section */
+        .products {
+            padding: 6rem 4rem;
+            background: var(--bg-primary);
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .section-tag {
+            font-size: 0.85rem;
+            color: var(--orange-primary);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+            margin-bottom: 0.75rem;
+        }
+
+        .section-title {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 20px;
+            padding: 2rem;
+            border: 1px solid var(--border-light);
+            position: relative;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+        }
+
+        .product-card:nth-child(1)::before {
+            background: linear-gradient(90deg, var(--orange-primary), var(--orange-hover));
+        }
+
+        .product-card:nth-child(2)::before {
+            background: linear-gradient(90deg, var(--blue-primary), var(--blue-dark));
+        }
+
+        .product-card:nth-child(3)::before {
+            background: linear-gradient(90deg, var(--green-success), #1D8348);
+        }
+
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .product-icon {
+            width: 56px;
+            height: 56px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .product-card:nth-child(1) .product-icon {
+            background: var(--orange-light);
+        }
+
+        .product-card:nth-child(2) .product-icon {
+            background: var(--blue-light);
+        }
+
+        .product-card:nth-child(3) .product-icon {
+            background: var(--green-light);
+        }
+
+        .product-name {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.375rem;
+        }
+
+        .product-tagline {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            margin-bottom: 1rem;
+        }
+
+        .product-description {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+
+        .product-features {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .feature-tag {
+            background: var(--bg-secondary);
+            padding: 0.35rem 0.75rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            border: 1px solid var(--border-light);
+        }
+
+        .product-cta {
+            display: flex;
+            gap: 0.75rem;
+        }
+
+        .product-btn {
+            flex: 1;
+            padding: 0.75rem 1rem;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-align: center;
+            transition: all 0.2s;
+        }
+
+        .product-btn-primary {
+            color: white;
+        }
+
+        .product-card:nth-child(1) .product-btn-primary {
+            background: var(--orange-primary);
+        }
+
+        .product-card:nth-child(1) .product-btn-primary:hover {
+            background: var(--orange-hover);
+        }
+
+        .product-card:nth-child(2) .product-btn-primary {
+            background: var(--blue-primary);
+        }
+
+        .product-card:nth-child(2) .product-btn-primary:hover {
+            background: var(--blue-dark);
+        }
+
+        .product-card:nth-child(3) .product-btn-primary {
+            background: var(--green-success);
+        }
+
+        .product-card:nth-child(3) .product-btn-primary:hover {
+            background: #1D8348;
+        }
+
+        .product-btn-secondary {
+            background: var(--bg-secondary);
+            color: var(--text-secondary);
+            border: 1px solid var(--border-light);
+        }
+
+        .product-btn-secondary:hover {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+        }
+
+        /* Why Section */
+        .why-section {
+            padding: 6rem 4rem;
+            background: var(--bg-secondary);
+        }
+
+        .why-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
+        }
+
+        .why-content h2 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+
+        .why-content > p {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .why-features {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .why-feature {
+            display: flex;
+            gap: 1rem;
+            align-items: flex-start;
+        }
+
+        .why-feature-icon {
+            width: 44px;
+            height: 44px;
+            background: white;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.25rem;
+            flex-shrink: 0;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border-light);
+        }
+
+        .why-feature-text h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 0.25rem;
+        }
+
+        .why-feature-text p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+        }
+
+        .why-visual {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.25rem;
+        }
+
+        .metric-card {
+            background: white;
+            border: 1px solid var(--border-light);
+            border-radius: 16px;
+            padding: 1.75rem;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .metric-value {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 2.25rem;
+            font-weight: 700;
+            margin-bottom: 0.375rem;
+        }
+
+        .metric-card:nth-child(1) .metric-value { color: var(--orange-primary); }
+        .metric-card:nth-child(2) .metric-value { color: var(--blue-primary); }
+        .metric-card:nth-child(3) .metric-value { color: var(--green-success); }
+        .metric-card:nth-child(4) .metric-value { color: var(--orange-primary); }
+
+        .metric-label {
+            font-size: 0.875rem;
+            color: var(--text-muted);
+        }
+
+        /* Contact Section */
+        .contact-section {
+            padding: 6rem 4rem;
+            background: linear-gradient(135deg, var(--bg-secondary) 0%, white 50%, var(--blue-light) 100%);
+        }
+
+        .contact-container {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1.1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+
+        .contact-info .section-tag {
+            text-align: left;
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-info h2 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+        }
+
+        .contact-info > p {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .contact-highlights {
+            display: flex;
+            flex-direction: column;
+            gap: 0.875rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .contact-highlight {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+        }
+
+        .highlight-icon {
+            width: 22px;
+            height: 22px;
+            background: var(--green-light);
+            color: var(--green-success);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.75rem;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .contact-email-box {
+            background: white;
+            border: 1px solid var(--border-light);
+            border-radius: 12px;
+            padding: 1.25rem 1.5rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .email-label {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .email-link {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--blue-primary);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: color 0.2s;
+        }
+
+        .email-link:hover {
+            color: var(--blue-dark);
+        }
+
+        .email-link svg {
+            flex-shrink: 0;
+        }
+
+        /* Contact Form */
+        .contact-form-wrapper {
+            background: white;
+            border-radius: 20px;
+            padding: 2.5rem;
+            box-shadow: var(--shadow-lg);
+            border: 1px solid var(--border-light);
+        }
+
+        .contact-form-title {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-form-subtitle {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.25rem;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-input,
+        .form-select,
+        .form-textarea {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            font-size: 0.95rem;
+            font-family: inherit;
+            color: var(--text-primary);
+            background: var(--bg-secondary);
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .form-input:focus,
+        .form-select:focus,
+        .form-textarea:focus {
+            outline: none;
+            border-color: var(--blue-primary);
+            box-shadow: 0 0 0 3px rgba(45, 156, 219, 0.1);
+            background: white;
+        }
+
+        .form-textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-select {
+            cursor: pointer;
+            appearance: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%2394A3B8' stroke-width='2'%3E%3Cpath d='M6 9l6 6 6-6'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            padding-right: 2.5rem;
+        }
+
+        .form-submit {
+            width: 100%;
+            background: var(--orange-primary);
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 8px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, transform 0.2s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .form-submit:hover {
+            background: var(--orange-hover);
+            transform: translateY(-2px);
+        }
+
+        .form-submit:disabled {
+            background: var(--text-muted);
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Success message */
+        .form-success {
+            display: none;
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .form-success.show {
+            display: block;
+        }
+
+        .form-success-icon {
+            width: 64px;
+            height: 64px;
+            background: var(--green-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            margin: 0 auto 1rem;
+        }
+
+        .form-success h3 {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-primary);
+            margin-bottom: 0.5rem;
+        }
+
+        .form-success p {
+            color: var(--text-secondary);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 4rem;
+            border-top: 1px solid var(--border-light);
+            background: white;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .footer-logo img {
+            height: 36px;
+            width: auto;
+        }
+
+        .footer-logo-text {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .footer-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--blue-primary);
+        }
+
+        .footer-copyright {
+            color: var(--text-muted);
+            font-size: 0.875rem;
+        }
+
+        /* Mobile menu toggle */
+        .mobile-menu-toggle {
+            display: none;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        .mobile-menu-toggle span {
+            display: block;
+            width: 22px;
+            height: 2px;
+            background: var(--text-primary);
+            margin: 5px 0;
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        /* Responsive */
+        @media (max-width: 1100px) {
+            nav {
+                padding: 1rem 2rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .mobile-menu-toggle {
+                display: block;
+            }
+
+            .hero {
+                padding: 7rem 2rem 3rem;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .hero-visual {
+                order: -1;
+            }
+
+            .hero-cards {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .preview-card {
+                transform: none !important;
+                flex: 1;
+                min-width: 200px;
+                max-width: 250px;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+                max-width: 500px;
+            }
+
+            .why-grid {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .why-visual {
+                order: -1;
+            }
+
+            .contact-container {
+                grid-template-columns: 1fr;
+                gap: 3rem;
+            }
+
+            .hero-stats {
+                justify-content: flex-start;
+                gap: 2rem;
+                flex-wrap: wrap;
+            }
+
+            .footer-content {
+                flex-direction: column;
+                gap: 1.5rem;
+                text-align: center;
+            }
+
+            .products, .why-section, .contact-section {
+                padding: 4rem 1.5rem;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .hero h1 {
+                font-size: 2.25rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .hero-cta {
+                flex-direction: column;
+            }
+
+            .hero-stats {
+                gap: 1.5rem;
+            }
+
+            .stat-value {
+                font-size: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 1.75rem;
+            }
+
+            .contact-info h2 {
+                font-size: 1.75rem;
+            }
+
+            .why-content h2 {
+                font-size: 1.75rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .hero-cards {
+                flex-direction: column;
+            }
+
+            .preview-card {
+                max-width: none;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .hero-badge, .hero h1, .hero p, .hero-cta, .hero-stats {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        .hero h1 { animation-delay: 0.1s; }
+        .hero p { animation-delay: 0.2s; }
+        .hero-cta { animation-delay: 0.3s; }
+        .hero-stats { animation-delay: 0.4s; }
+
+        /* Loading spinner */
+        .spinner {
+            width: 20px;
+            height: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            display: none;
+        }
+
+        .form-submit.loading .spinner {
+            display: block;
+        }
+
+        .form-submit.loading .btn-text {
+            display: none;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <a href="#" class="logo">
+            <img src="logo.png" alt="GradAscent Logo">
+            <div class="logo-text"><span class="orange">Grad</span><span class="blue">Ascent</span></div>
+        </a>
+        <ul class="nav-links">
+            <li><a href="#products">Products</a></li>
+            <li><a href="#why">Why Us</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <a href="#contact" class="nav-cta">Request Demo</a>
+        <button class="mobile-menu-toggle" aria-label="Toggle menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                    </svg>
+                    AI-Powered Education Platform
+                </div>
+                <h1>Transform Education with <span class="highlight-orange">AI-Powered</span> <span class="highlight-blue">Innovation</span></h1>
+                <p>Automate assessments, evaluate technical speaking skills, and generate lecture notes instantly. Enterprise-grade AI solutions built for educational institutions.</p>
+                <div class="hero-cta">
+                    <a href="#products" class="btn-primary">
+                        Explore Products
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M5 12h14M12 5l7 7-7 7"/>
+                        </svg>
+                    </a>
+                    <a href="#contact" class="btn-secondary">Schedule Demo</a>
+                </div>
+                <div class="stats-product-label" id="statsLabel">Showing stats for: All Products</div>
+                <div class="hero-stats" id="heroStats">
+                    <div class="stat-item">
+                        <div class="stat-value" id="stat1Value">95%</div>
+                        <div class="stat-label" id="stat1Label">Accuracy Rate</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="stat2Value">~60s</div>
+                        <div class="stat-label" id="stat2Label">Eval per Script</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="stat3Value">Detailed</div>
+                        <div class="stat-label" id="stat3Label">Feedback per Q</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-value" id="stat4Value">3</div>
+                        <div class="stat-label" id="stat4Label">Products Live</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-cards">
+                    <div class="preview-card" data-product="truemark">
+                        <div class="preview-header">
+                            <div class="preview-icon orange">âœï¸</div>
+                            <div>
+                                <div class="preview-title">TrueMark</div>
+                                <div class="preview-desc">AI Answer Script Evaluator</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="preview-card" data-product="spoken">
+                        <div class="preview-header">
+                            <div class="preview-icon blue">ðŸŽ¤</div>
+                            <div>
+                                <div class="preview-title">Spoken Tech Coach</div>
+                                <div class="preview-desc">Technical Speech Evaluator</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="preview-card" data-product="boardnotes">
+                        <div class="preview-header">
+                            <div class="preview-icon green">ðŸ“¸</div>
+                            <div>
+                                <div class="preview-title">BoardNotes</div>
+                                <div class="preview-desc">Board to Notes in Seconds</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section class="products" id="products">
+        <div class="section-header">
+            <div class="section-tag">Our Products</div>
+            <h2 class="section-title">AI Solutions for Every Need</h2>
+            <p class="section-subtitle">Three powerful products designed to revolutionize educational assessment and content delivery</p>
+        </div>
+
+        <div class="products-grid">
+            <!-- TrueMark -->
+            <div class="product-card">
+                <div class="product-icon">âœï¸</div>
+                <h3 class="product-name">TrueMark</h3>
+                <p class="product-tagline">AI Answer Script Evaluator</p>
+                <p class="product-description">
+                    Transform how you assess handwritten exams. Upload answer scripts, let AI evaluate them with advanced handwriting recognition, and get detailed feedback with accurate scoring in minutes.
+                </p>
+                <div class="product-features">
+                    <span class="feature-tag">Handwriting OCR</span>
+                    <span class="feature-tag">Smart Scoring</span>
+                    <span class="feature-tag">Batch Processing</span>
+                    <span class="feature-tag">PDF Reports</span>
+                </div>
+                <div class="product-cta">
+                    <a href="https://nice-desert-0222acf00.4.azurestaticapps.net" target="_blank" class="product-btn product-btn-primary">View Product</a>
+                    <a href="#contact" class="product-btn product-btn-secondary">Get Demo</a>
+                </div>
+            </div>
+
+            <!-- Spoken Tech Coach -->
+            <div class="product-card">
+                <div class="product-icon">ðŸŽ¤</div>
+                <h3 class="product-name">Spoken Tech Coach</h3>
+                <p class="product-tagline">Technical Speech Evaluator</p>
+                <p class="product-description">
+                    Evaluate technical speaking skills with AI precision. Assess student presentations on technical accuracy, grammar, and pronunciation with instant, actionable feedback.
+                </p>
+                <div class="product-features">
+                    <span class="feature-tag">Speech-to-Text</span>
+                    <span class="feature-tag">3D Scoring</span>
+                    <span class="feature-tag">AI Questions</span>
+                    <span class="feature-tag">Video Proctoring</span>
+                </div>
+                <div class="product-cta">
+                    <a href="https://delightful-glacier-030173600.6.azurestaticapps.net" target="_blank" class="product-btn product-btn-primary">View Product</a>
+                    <a href="#contact" class="product-btn product-btn-secondary">Get Demo</a>
+                </div>
+            </div>
+
+            <!-- Board Notes -->
+            <div class="product-card">
+                <div class="product-icon">ðŸ“¸</div>
+                <h3 class="product-name">BoardNotes</h3>
+                <p class="product-tagline">Classroom to Notes in Seconds</p>
+                <p class="product-description">
+                    Snap your classroom board, get AI-generated lecture notes, and auto-send professional PDFs to students. Transform any whiteboard into organized, shareable content instantly.
+                </p>
+                <div class="product-features">
+                    <span class="feature-tag">Any Board Type</span>
+                    <span class="feature-tag">AI Extraction</span>
+                    <span class="feature-tag">PDF Export</span>
+                    <span class="feature-tag">Auto Email</span>
+                </div>
+                <div class="product-cta">
+                    <a href="https://victorious-tree-026143000.6.azurestaticapps.net" target="_blank" class="product-btn product-btn-primary">View Product</a>
+                    <a href="#contact" class="product-btn product-btn-secondary">Get Demo</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Section -->
+    <section class="why-section" id="why">
+        <div class="why-grid">
+            <div class="why-content">
+                <h2>Why Choose GradAscent?</h2>
+                <p>We build AI solutions that understand the real challenges of educational institutions. Our products are designed for accuracy, speed, and seamless integration into existing workflows.</p>
+                
+                <div class="why-features">
+                    <div class="why-feature">
+                        <div class="why-feature-icon">ðŸŽ¯</div>
+                        <div class="why-feature-text">
+                            <h4>Built for Accuracy</h4>
+                            <p>State-of-the-art AI models trained for educational content</p>
+                        </div>
+                    </div>
+                    <div class="why-feature">
+                        <div class="why-feature-icon">âš¡</div>
+                        <div class="why-feature-text">
+                            <h4>Lightning Fast</h4>
+                            <p>Process entire class batches in minutes, not hours</p>
+                        </div>
+                    </div>
+                    <div class="why-feature">
+                        <div class="why-feature-icon">ðŸ”’</div>
+                        <div class="why-feature-text">
+                            <h4>Enterprise Security</h4>
+                            <p>Your data stays secure with enterprise-grade protection</p>
+                        </div>
+                    </div>
+                    <div class="why-feature">
+                        <div class="why-feature-icon">â˜ï¸</div>
+                        <div class="why-feature-text">
+                            <h4>Cloud Native</h4>
+                            <p>Secure, scalable infrastructure on Microsoft Azure</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="why-visual">
+                <div class="metric-card">
+                    <div class="metric-value">95%</div>
+                    <div class="metric-label">AI Accuracy</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">10x</div>
+                    <div class="metric-label">Time Saved</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">24/7</div>
+                    <div class="metric-label">Availability</div>
+                </div>
+                <div class="metric-card">
+                    <div class="metric-value">3</div>
+                    <div class="metric-label">Products Live</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="section-tag">Get Started</div>
+                <h2>Request a Demo</h2>
+                <p>See how GradAscent AI can transform your institution's assessment workflow. Fill out the form and our team will reach out within 24 hours.</p>
+                
+                <div class="contact-highlights">
+                    <div class="contact-highlight">
+                        <span class="highlight-icon">âœ“</span>
+                        <span>Personalized product walkthrough</span>
+                    </div>
+                    <div class="contact-highlight">
+                        <span class="highlight-icon">âœ“</span>
+                        <span>Custom implementation planning</span>
+                    </div>
+                    <div class="contact-highlight">
+                        <span class="highlight-icon">âœ“</span>
+                        <span>Pricing tailored to your needs</span>
+                    </div>
+                    <div class="contact-highlight">
+                        <span class="highlight-icon">âœ“</span>
+                        <span>Free pilot program available</span>
+                    </div>
+                </div>
+
+                <div class="contact-email-box">
+                    <span class="email-label">Or email us directly</span>
+                    <a href="mailto:contact@gradascentglobal.com" class="email-link">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <polyline points="22,6 12,13 2,6"/>
+                        </svg>
+                        contact@gradascentglobal.com
+                    </a>
+                </div>
+            </div>
+
+            <div class="contact-form-wrapper">
+                <h3 class="contact-form-title">Request a Demo</h3>
+                <p class="contact-form-subtitle">Fill out the form and we'll get back to you shortly</p>
+                
+                <form id="contactForm">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label" for="firstName">First Name *</label>
+                            <input type="text" id="firstName" name="firstName" class="form-input" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label" for="lastName">Last Name *</label>
+                            <input type="text" id="lastName" name="lastName" class="form-input" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="email">Work Email *</label>
+                        <input type="email" id="email" name="email" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="phone">Phone Number *</label>
+                        <input type="tel" id="phone" name="phone" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="organization">Organization Name *</label>
+                        <input type="text" id="organization" name="organization" class="form-input" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="product">Product Interest *</label>
+                        <select id="product" name="product" class="form-select" required>
+                            <option value="">Select a product</option>
+                            <option value="truemark">TrueMark - Answer Script Evaluator</option>
+                            <option value="spoken">Spoken Tech Coach - Speech Evaluator</option>
+                            <option value="boardnotes">BoardNotes - Board to Notes</option>
+                            <option value="all">All Products</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label class="form-label" for="message">Message (Optional)</label>
+                        <textarea id="message" name="message" class="form-textarea" placeholder="Tell us about your requirements..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="form-submit" id="submitBtn">
+                        <span class="btn-text">Submit Request</span>
+                        <div class="spinner"></div>
+                    </button>
+                </form>
+
+                <div class="form-success" id="formSuccess">
+                    <div class="form-success-icon">âœ…</div>
+                    <h3>Thank You!</h3>
+                    <p>Your demo request has been submitted. Our team will contact you within 24 hours.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">
+                <img src="logo.png" alt="GradAscent Logo">
+                <div class="footer-logo-text">GradAscent Technologies</div>
+            </div>
+            <div class="footer-links">
+                <a href="#products">Products</a>
+                <a href="#why">About</a>
+                <a href="#contact">Contact</a>
+                <a href="mailto:contact@gradascentglobal.com">contact@gradascentglobal.com</a>
+            </div>
+            <div class="footer-copyright">
+                Â© 2026 GradAscent Technologies. All rights reserved.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Product stats data
+        const productStats = {
+            default: {
+                label: 'All Products',
+                stats: [
+                    { value: '95%', label: 'Accuracy Rate' },
+                    { value: '~60s', label: 'Eval per Script' },
+                    { value: 'Detailed', label: 'Feedback per Q' },
+                    { value: '3', label: 'Products Live' }
+                ]
+            },
+            truemark: {
+                label: 'TrueMark',
+                stats: [
+                    { value: '95%', label: 'OCR Accuracy' },
+                    { value: '~60s', label: 'Eval per Script' },
+                    { value: 'Detailed', label: 'Feedback per Q' },
+                    { value: 'PDF', label: 'Reports & CSV' }
+                ]
+            },
+            spoken: {
+                label: 'Spoken Tech Coach',
+                stats: [
+                    { value: '3D', label: 'Scoring System' },
+                    { value: '99%', label: 'Speech Recognition' },
+                    { value: 'Instant', label: 'Feedback' },
+                    { value: 'AI', label: 'Question Gen' }
+                ]
+            },
+            boardnotes: {
+                label: 'BoardNotes',
+                stats: [
+                    { value: '30s', label: 'Processing Time' },
+                    { value: '95%', label: 'Text Accuracy' },
+                    { value: 'Auto', label: 'PDF & Email' },
+                    { value: 'Any', label: 'Board Type' }
+                ]
+            }
+        };
+
+        // Update stats based on hovered product
+        function updateStats(product) {
+            const data = productStats[product] || productStats.default;
+            const label = document.getElementById('statsLabel');
+            
+            label.textContent = `Showing stats for: ${data.label}`;
+            label.classList.add('visible');
+
+            data.stats.forEach((stat, index) => {
+                const valueEl = document.getElementById(`stat${index + 1}Value`);
+                const labelEl = document.getElementById(`stat${index + 1}Label`);
+                
+                valueEl.style.opacity = '0';
+                labelEl.style.opacity = '0';
+                
+                setTimeout(() => {
+                    valueEl.textContent = stat.value;
+                    labelEl.textContent = stat.label;
+                    valueEl.style.opacity = '1';
+                    labelEl.style.opacity = '1';
+                }, 150);
+            });
+        }
+
+        // Reset to default stats
+        function resetStats() {
+            updateStats('default');
+            document.getElementById('statsLabel').classList.remove('visible');
+        }
+
+        // Add event listeners to preview cards
+        document.querySelectorAll('.preview-card').forEach(card => {
+            card.addEventListener('mouseenter', () => {
+                const product = card.dataset.product;
+                updateStats(product);
+                card.classList.add('active');
+            });
+            
+            card.addEventListener('mouseleave', () => {
+                resetStats();
+                card.classList.remove('active');
+            });
+
+            // Click to navigate to product
+            card.addEventListener('click', () => {
+                const product = card.dataset.product;
+                const urls = {
+                    truemark: 'https://nice-desert-0222acf00.4.azurestaticapps.net',
+                    spoken: 'https://delightful-glacier-030173600.6.azurestaticapps.net',
+                    boardnotes: 'https://victorious-tree-026143000.6.azurestaticapps.net'
+                };
+                window.open(urls[product], '_blank');
+            });
+        });
+
+        // Contact form submission
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const form = this;
+            const formSuccess = document.getElementById('formSuccess');
+            
+            // Show loading state
+            submitBtn.classList.add('loading');
+            submitBtn.disabled = true;
+            
+            // Collect form data
+            const formData = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                email: document.getElementById('email').value,
+                phone: document.getElementById('phone').value,
+                organization: document.getElementById('organization').value,
+                product: document.getElementById('product').value,
+                message: document.getElementById('message').value,
+                timestamp: new Date().toISOString(),
+                source: 'GradAscent Showcase Page'
+            };
+
+            try {
+                // Option 1: Send to Azure Function (you'll need to create this)
+                // const response = await fetch('YOUR_AZURE_FUNCTION_URL', {
+                //     method: 'POST',
+                //     headers: { 'Content-Type': 'application/json' },
+                //     body: JSON.stringify(formData)
+                // });
+
+                // Option 2: For now, we'll store in localStorage and show success
+                // In production, replace this with actual API call
+                
+                // Store locally (for demo - replace with actual API)
+                const submissions = JSON.parse(localStorage.getItem('gradascent_submissions') || '[]');
+                submissions.push(formData);
+                localStorage.setItem('gradascent_submissions', JSON.stringify(submissions));
+                
+                // Log to console (for testing)
+                console.log('Form submission:', formData);
+                
+                // Simulate API delay
+                await new Promise(resolve => setTimeout(resolve, 1000));
+                
+                // Show success message
+                form.style.display = 'none';
+                formSuccess.classList.add('show');
+                
+            } catch (error) {
+                console.error('Submission error:', error);
+                alert('There was an error submitting your request. Please try again or contact us directly.');
+            } finally {
+                submitBtn.classList.remove('loading');
+                submitBtn.disabled = false;
+            }
+        });
+
+        // Smooth reveal on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.product-card, .metric-card').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(20px)';
+            el.style.transition = 'opacity 0.5s ease-out, transform 0.5s ease-out';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>
+
