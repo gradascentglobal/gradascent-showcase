@@ -800,6 +800,121 @@
             flex-shrink: 0;
         }
 
+        /* Email Options */
+        .email-options {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .email-option-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            padding: 1rem 1.25rem;
+            border-radius: 10px;
+            border: 2px solid var(--border-light);
+            background: white;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            transition: all 0.2s ease;
+        }
+
+        .email-option-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .email-option-btn.outlook:hover {
+            border-color: #0078D4;
+            background: #F0F8FF;
+        }
+
+        .email-option-btn.gmail:hover {
+            border-color: #EA4335;
+            background: #FFF5F5;
+        }
+
+        .email-option-btn.default-mail:hover {
+            border-color: var(--blue-primary);
+            background: var(--blue-light);
+        }
+
+        .email-option-btn svg {
+            flex-shrink: 0;
+        }
+
+        .email-divider {
+            display: flex;
+            align-items: center;
+            text-align: center;
+            margin: 1.5rem 0;
+        }
+
+        .email-divider::before,
+        .email-divider::after {
+            content: '';
+            flex: 1;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .email-divider span {
+            padding: 0 1rem;
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .email-addresses {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .email-address-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0.875rem 1rem;
+            background: var(--bg-secondary);
+            border-radius: 8px;
+            border: 1px solid var(--border-light);
+        }
+
+        .email-address-item span {
+            font-size: 0.95rem;
+            color: var(--text-primary);
+            font-weight: 500;
+        }
+
+        .copy-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.375rem;
+            padding: 0.5rem 0.75rem;
+            border: 1px solid var(--border-light);
+            border-radius: 6px;
+            background: white;
+            cursor: pointer;
+            font-size: 0.8rem;
+            color: var(--text-secondary);
+            transition: all 0.2s ease;
+        }
+
+        .copy-btn:hover {
+            background: var(--blue-light);
+            border-color: var(--blue-primary);
+            color: var(--blue-primary);
+        }
+
+        .copy-btn.copied {
+            background: var(--green-light);
+            border-color: var(--green-success);
+            color: var(--green-success);
+        }
+
         /* Contact Form */
         .contact-form-wrapper {
             background: white;
@@ -1504,63 +1619,61 @@
 
             <div class="contact-form-wrapper">
                 <h3 class="contact-form-title">Request a Demo</h3>
-                <p class="contact-form-subtitle">Fill out the form and we'll get back to you shortly</p>
+                <p class="contact-form-subtitle">Click your preferred email app to send us a demo request</p>
                 
-                <form id="contactForm">
-                    <div class="form-row">
-                        <div class="form-group">
-                            <label class="form-label" for="firstName">First Name *</label>
-                            <input type="text" id="firstName" name="firstName" class="form-input" required>
-                        </div>
-                        <div class="form-group">
-                            <label class="form-label" for="lastName">Last Name *</label>
-                            <input type="text" id="lastName" name="lastName" class="form-input" required>
-                        </div>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label" for="email">Work Email *</label>
-                        <input type="email" id="email" name="email" class="form-input" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label" for="phone">Phone Number *</label>
-                        <input type="tel" id="phone" name="phone" class="form-input" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label" for="organization">Organization Name *</label>
-                        <input type="text" id="organization" name="organization" class="form-input" required>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label" for="product">Product Interest *</label>
-                        <select id="product" name="product" class="form-select" required>
-                            <option value="">Select a product</option>
-                            <option value="truemark">TrueMark - Answer Script Evaluator</option>
-                            <option value="spoken">Spoken Tech Coach - Speech Evaluator</option>
-                            <option value="boardnotes">BoardNotes - Board to Notes</option>
-                            <option value="all">All Products</option>
-                        </select>
-                    </div>
-                    
-                    <div class="form-group">
-                        <label class="form-label" for="message">Message (Optional)</label>
-                        <textarea id="message" name="message" class="form-textarea" placeholder="Tell us about your requirements..."></textarea>
-                    </div>
-                    
-                    <button type="submit" class="form-submit" id="submitBtn">
-                        <span class="btn-text">Submit Request</span>
-                        <div class="spinner"></div>
+                <div class="email-options">
+                    <button class="email-option-btn outlook" onclick="openOutlook()">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <rect width="24" height="24" rx="4" fill="#0078D4"/>
+                            <path d="M7 7h4v4H7V7zm0 6h4v4H7v-4zm6-6h4v4h-4V7zm0 6h4v4h-4v-4z" fill="white" opacity="0.8"/>
+                            <path d="M5 5h6v8H5V5z" fill="white"/>
+                        </svg>
+                        <span>Open in Outlook</span>
                     </button>
-                </form>
-
-                <div class="form-success" id="formSuccess">
-                    <div class="form-success-icon">
-                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#27AE60" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                    
+                    <button class="email-option-btn gmail" onclick="openGmail()">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                            <rect width="24" height="24" rx="4" fill="#EA4335"/>
+                            <path d="M4 8l8 5 8-5v10H4V8z" fill="white"/>
+                            <path d="M20 6l-8 5-8-5h16z" fill="#FBBC05"/>
+                        </svg>
+                        <span>Open in Gmail</span>
+                    </button>
+                    
+                    <button class="email-option-btn default-mail" onclick="openDefaultMail()">
+                        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#475569" stroke-width="2">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                            <polyline points="22,6 12,13 2,6"/>
+                        </svg>
+                        <span>Open Default Email App</span>
+                    </button>
+                </div>
+                
+                <div class="email-divider">
+                    <span>or copy our email addresses</span>
+                </div>
+                
+                <div class="email-addresses">
+                    <div class="email-address-item">
+                        <span id="email1">contact@gradascentglobal.com</span>
+                        <button class="copy-btn" onclick="copyEmail('contact@gradascentglobal.com', this)">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                            Copy
+                        </button>
                     </div>
-                    <h3>Thank You!</h3>
-                    <p>Your demo request has been submitted. Our team will contact you within 24 hours.</p>
+                    <div class="email-address-item">
+                        <span id="email2">gradascentglobal@gmail.com</span>
+                        <button class="copy-btn" onclick="copyEmail('gradascentglobal@gmail.com', this)">
+                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+                            </svg>
+                            Copy
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1586,6 +1699,58 @@
     </footer>
 
     <script>
+        // Email functions
+        const emailSubject = 'Demo Request - GradAscent AI Products';
+        const emailBody = `Hi GradAscent Team,
+
+I am interested in learning more about your AI-powered education solutions.
+
+Please contact me to schedule a demo.
+
+My Details:
+- Name: 
+- Organization: 
+- Phone: 
+- Product Interest: 
+
+Thank you!`;
+
+        const toEmails = 'contact@gradascentglobal.com,gradascentglobal@gmail.com';
+
+        function openOutlook() {
+            const outlookUrl = 'https://outlook.live.com/mail/0/deeplink/compose?to=' + 
+                encodeURIComponent(toEmails) + 
+                '&subject=' + encodeURIComponent(emailSubject) + 
+                '&body=' + encodeURIComponent(emailBody);
+            window.open(outlookUrl, '_blank');
+        }
+
+        function openGmail() {
+            const gmailUrl = 'https://mail.google.com/mail/?view=cm&fs=1&to=' + 
+                encodeURIComponent(toEmails) + 
+                '&su=' + encodeURIComponent(emailSubject) + 
+                '&body=' + encodeURIComponent(emailBody);
+            window.open(gmailUrl, '_blank');
+        }
+
+        function openDefaultMail() {
+            const mailtoUrl = 'mailto:' + toEmails + 
+                '?subject=' + encodeURIComponent(emailSubject) + 
+                '&body=' + encodeURIComponent(emailBody);
+            window.location.href = mailtoUrl;
+        }
+
+        function copyEmail(email, btn) {
+            navigator.clipboard.writeText(email).then(function() {
+                btn.classList.add('copied');
+                btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Copied!';
+                setTimeout(function() {
+                    btn.classList.remove('copied');
+                    btn.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg> Copy';
+                }, 2000);
+            });
+        }
+
         // Product stats data
         const productStats = {
             default: {
@@ -1682,65 +1847,6 @@
         });
 
         // Contact form submission
-        document.getElementById('contactForm').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const submitBtn = document.getElementById('submitBtn');
-            const form = this;
-            const formSuccess = document.getElementById('formSuccess');
-            
-            // Show loading state
-            submitBtn.classList.add('loading');
-            submitBtn.disabled = true;
-            
-            // Collect form data
-            const formData = {
-                firstName: document.getElementById('firstName').value,
-                lastName: document.getElementById('lastName').value,
-                email: document.getElementById('email').value,
-                phone: document.getElementById('phone').value,
-                organization: document.getElementById('organization').value,
-                product: document.getElementById('product').value,
-                message: document.getElementById('message').value,
-                timestamp: new Date().toISOString(),
-                source: 'GradAscent Showcase Page'
-            };
-
-            try {
-                // Option 1: Send to Azure Function (you'll need to create this)
-                // const response = await fetch('YOUR_AZURE_FUNCTION_URL', {
-                //     method: 'POST',
-                //     headers: { 'Content-Type': 'application/json' },
-                //     body: JSON.stringify(formData)
-                // });
-
-                // Option 2: For now, we'll store in localStorage and show success
-                // In production, replace this with actual API call
-                
-                // Store locally (for demo - replace with actual API)
-                const submissions = JSON.parse(localStorage.getItem('gradascent_submissions') || '[]');
-                submissions.push(formData);
-                localStorage.setItem('gradascent_submissions', JSON.stringify(submissions));
-                
-                // Log to console (for testing)
-                console.log('Form submission:', formData);
-                
-                // Simulate API delay
-                await new Promise(resolve => setTimeout(resolve, 1000));
-                
-                // Show success message
-                form.style.display = 'none';
-                formSuccess.classList.add('show');
-                
-            } catch (error) {
-                console.error('Submission error:', error);
-                alert('There was an error submitting your request. Please try again or contact us directly.');
-            } finally {
-                submitBtn.classList.remove('loading');
-                submitBtn.disabled = false;
-            }
-        });
-
         // Smooth reveal on scroll
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
